@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+</style>
+    <div style="margin: 2rem; text-align: center">
+        <h1>METHOD</h1>
+
+        <form action="/accounts/hello_world/" method="post">
+            {% csrf_token %}
+            <input type="text" name="input">
+            <input type="submit" class="btn btn-dark rounded-pill px-5">
+        </form>
+
+        {% for data in data_list %}
+        <h3>{{ data.text  }}</h3>{#단순 변수 출력은 {{  }} 를 사용함#}
+        {% endfor %}
+    </div>
+
+{% endblock content %}
