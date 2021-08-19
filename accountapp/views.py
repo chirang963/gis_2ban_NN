@@ -8,16 +8,20 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic.list import MultipleObjectMixin
 
 from accountapp.decorators import account_ownership_required
-from accountapp.form import AccountCreationForm
+from accountapp.forms import AccountCreationForm
 from accountapp.models import HelloWorld
+from articleapp.models import Article
 
-@login_required(login_url=reverse_lazy('accountapp:login'))
+
+@login_required
 def hello_world(request):
     if request.method == "POST":
 
         temp = request.POST.get('input')
+
         new_data = HelloWorld()
         new_data.text = temp
         new_data.save()
@@ -30,7 +34,6 @@ def hello_world(request):
                       context={'data_list': data_list})
 
 
-
 class AccountCreateView(CreateView):
     model = User
     form_class = UserCreationForm
@@ -40,16 +43,24 @@ class AccountCreateView(CreateView):
         return reverse('accountapp:detail', kwargs={'pk': self.object.pk})
 
 
-class AccountDetailView(DetailView):
+class AccountDetailView(DetailView, MultipleObjectMixin):
     model = User
     context_object_name = 'target_user'
     template_name = 'accountapp/detail.html'
 
-has_ownership = [login_required, account_ownership_required ]
+    paginate_by = 20
+
+    def get_context_data(self, **kwargs):
+        article_list = Article.objects.filter(writer=self.object)
+        return super().get_context_data(object_list=article_list,
+                                        **kwargs)
+
+
+has_ownership = [login_required, account_ownership_required]
+
 
 @method_decorator(has_ownership, 'get')
 @method_decorator(has_ownership, 'post')
-
 class AccountUpdateView(UpdateView):
     model = User
     form_class = AccountCreationForm
@@ -62,10 +73,8 @@ class AccountUpdateView(UpdateView):
 
 @method_decorator(has_ownership, 'get')
 @method_decorator(has_ownership, 'post')
-
 class AccountDeleteView(DeleteView):
     model = User
     context_object_name = 'target_user'
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/delete.html'
-
