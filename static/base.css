@@ -1,34 +1,37 @@
 .pragmatic_header_logo{
-    margin-bottom: 2rem 0;
-    font-family: 'Dancing Script', cursive;
+    margin: 2rem 0;
+    font-family: 'Pacifico', cursive;
 }
 
-.pragmatic_header_botton{
-    margin-bottom: 2rem 0;
-    font-family: 'Dancing Script', cursive;
+.pragmatic_header_button {
+    margin-bottom: 2rem;
 }
-.pragmatic_footer_logo{
+
+.pragmatic_footer_logo {
     margin: 1.5rem 0;
-    font-family: 'Dancing Script', cursive;
+    font-family: 'Pacifico', cursive;
 }
-.pragmatic_footer_botton{
+
+.pragmatic_footer_button {
     margin-top: 2rem;
 }
 
 .mw-500 {
     max-width: 500px;
-    padding: 1.5px;
+    padding: 1rem 1.5rem;
 }
 
 .profile_image {
     height: 12rem;
     width: 12rem;
-    border-right: 20rem;
+    border-radius: 20rem;
     object-fit: cover;
 }
-NNS_B {
+
+.NNS_B {
     font-family: "NanumSquareB", cursive;
 }
+
 
 .round_button {
     color: black;
@@ -64,10 +67,19 @@ NNS_B {
     border-radius: 1rem;
     margin: 1rem;
 }
+
 @media screen and (max-width: 500px) {
     html {
-        /* default font size = 16px */
+        /* default font-size = 16px */
         font-size: 13px;
     }
+}
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: black;
 }
