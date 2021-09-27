@@ -36,9 +36,9 @@ services:
       - MARIADB_PASSWORD
     environment:
       MARIADB_DATABASE: django
-      MARIADB_USER: django
-      MARIADB_PASSWORD: kukuz0304
-      MARIADB_ROOT_PASSWORD: kukuz0304
+      MARIADB_USER_FILE: /run/secrets/MARIADB_USER
+      MARIADB_PASSWORD_FILE: /run/secrets/MARIADB_PASSWORD
+      MARIADB_ROOT_PASSWORD_FILE: /run/secrets/MARIADB_ROOT_PASSWORD4
 
 networks:
   gis_2ban_network:
