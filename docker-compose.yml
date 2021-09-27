@@ -31,9 +31,9 @@ services:
     volumes:
       - gis_mariadb:/var/lib/mysql
     secrets:
-      - DJANGO_SECRET_KEY
       - MARIADB_USER
       - MARIADB_PASSWORD
+      - MARIADB_ROOT_PASSWORD
     environment:
       MARIADB_DATABASE: django
       MARIADB_USER_FILE: /run/secrets/MARIADB_USER
