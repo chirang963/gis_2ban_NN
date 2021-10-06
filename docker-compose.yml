@@ -15,8 +15,8 @@ services:
         protocol: tcp
         target: 80
         published: 80
-  secrets:
-    - NGINX_PASSWORD
+    secrets:
+      - NGINX_PASSWORD
 
 
   goaccess:
